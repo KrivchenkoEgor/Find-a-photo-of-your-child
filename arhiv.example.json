@@ -1,0 +1,7 @@
+{
+  "_kommentariy": "Скопируйте этот файл в arhiv.local.json и укажите свои папки. arhiv.local.json лежит в .gitignore: имена файлов семейного архива — это тоже личные данные, в репозитории их нет.",
+  "photos": "data/ИМЯ-АРХИВА/Photos",
+  "reference": "ref",
+  "anchor": "IMYA-ETALONNOGO-SNIMKA.jpg",
+  "confirmed": []
+}

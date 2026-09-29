@@ -1,0 +1,50 @@
+# requirements.txt — единственный источник правды по зависимостям.
+#
+# Проверено 2026-09-28 на macOS arm64, Python 3.11.15: пакеты не просто ставятся,
+# а реально находят лицо на тестовом фото (см. check_env.py и check_models.py).
+# Старые пины 2024 года (PySide6 6.6.3, insightface 0.7.3, numpy 1.26.4) под этот
+# Python не подходили: 4 из 8 пакетов не устанавливались вовсе.
+#
+# Установка (два шага, порядок важен):
+#   uv venv --python /opt/homebrew/opt/python@3.11/bin/python3.11 .venv
+#   uv pip install --python .venv/bin/python PySide6==6.11.2 opencv-python-headless==5.0.0.93 \
+#       numpy==2.4.6 onnxruntime==1.30.0 onnx==1.23.0 scipy==1.17.1 scikit-image==0.26.0 \
+#       pillow-heif==1.8.0 Pillow==12.3.0 tqdm==4.70.1 requests==2.34.2
+#   uv pip install --python .venv/bin/python --no-deps insightface==2.0
+#
+# Почему insightface ставится отдельно с --no-deps: он заявляет зависимость
+# opencv-python, а opencv-python и opencv-python-headless укладывают свой код
+# в один и тот же каталог cv2 и затирают друг друга. Все остальные зависимости
+# insightface перечислены выше вручную.
+
+# --- GUI (Qt 6) ---
+PySide6==6.11.2
+
+# --- Компьютерное зрение: детекция лиц YuNet (режим «Все лица») ---
+opencv-python-headless==5.0.0.93
+numpy==2.4.6
+
+# --- Распознавание лиц (режим «Конкретный человек») ---
+insightface==2.0
+onnxruntime==1.30.0
+onnx==1.23.0
+scipy==1.17.1
+scikit-image==0.26.0
+# insightface вызывает skimage.transform_estimate, помеченный как устаревший
+# в 0.26 и удаляемый в 2.2. Не обновляем scikit-image, пока не проверим.
+
+# --- Поддержка HEIC (фото с iPhone) ---
+pillow-heif==1.8.0
+Pillow==12.3.0
+
+# --- Служебные ---
+tqdm==4.70.1
+requests==2.34.2
+# requests нужен insightface для скачивания моделей (~290 МБ) в ~/.insightface
+
+# --- Для разработки и тестов (приложению не нужны) ---
+pytest==9.1.1
+pyinstaller==6.22.3
+# Сборка `.app`: `.venv/bin/python -m PyInstaller FindChild.spec`. Нужен macOS 26+ —
+# не ограничение PyInstaller, а требование Homebrew-сборки Python 3.11.15, внутри
+# которой лежит интерпретатор (`otool -l` даёт minos 26.0 у бинарника Python).
