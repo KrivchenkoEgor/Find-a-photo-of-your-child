@@ -9,7 +9,7 @@
 | | |
 |---|---|
 | Платформа | macOS 26 и новее, только Apple Silicon (M1–M4) |
-| Готовый носитель | собирается одной командой: `./make_dmg.sh` → `dist/FindChild.dmg` (302 МБ) |
+| Готовый носитель | скачать в релизе: [`FindChild.dmg`, 302 МБ](https://github.com/KrivchenkoEgor/Find-a-photo-of-your-child/releases/latest/download/FindChild.dmg) |
 | Скорость | 131 фото, «внимательный» разбор, с нуля — 255 с; повторный — секунды |
 | Тесты | 635 быстрых + 6 боевых на реальном архиве |
 | Лицензия | MIT |
@@ -92,6 +92,13 @@
 ### Готовое приложение (macOS)
 
 Нужно: macOS 26+, Apple Silicon, ~600 МБ свободного места.
+
+**Файл лежит в релизах** — скачивается без установки и без входа в аккаунт:
+
+- образ: <https://github.com/KrivchenkoEgor/Find-a-photo-of-your-child/releases/latest/download/FindChild.dmg> (302 МБ)
+- страница релиза с инструкцией первого запуска: <https://github.com/KrivchenkoEgor/Find-a-photo-of-your-child/releases/tag/v1.0>
+
+Тот же образ можно собрать из исходников на своём Маке:
 
 ```bash
 git clone https://github.com/KrivchenkoEgor/Find-a-photo-of-your-child.git
